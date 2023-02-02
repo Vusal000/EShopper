@@ -47,17 +47,17 @@ class settings(AbstractBaseModel):
 
 
 
-class Subscibers(AbstractBaseModel):
+class subscribe(AbstractBaseModel):
     name = models.CharField(max_length= 20)
     email = models.EmailField(max_length=100)
 
 
-    class Meta:
-        verbose_name_plural = "Subscribers"
-        verbose_name = "Subscriber"
+    # class Meta:
+    #     verbose_name_plural = "Subscribers"
+    #     verbose_name = "Subscriber"
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
 
 class homepage(AbstractBaseModel):
     title1 = models.CharField(max_length=100)
@@ -83,24 +83,6 @@ class category(AbstractBaseModel):
 
     def __str__(self): 
         return self.title
-
-class product(AbstractBaseModel):
-    name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='media/product')
-    price = models.FloatField(max_length=10)
-    size = models.CharField(max_length=100)
-    color = models.CharField(max_length=15)
-    description = models.TextField(max_length=200)
-    additional_information = models.TextField(max_length=200)
-    category = models.ForeignKey(category, on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name_plural = "Products"
-        verbose_name = "Product"
-
-    def __str__(self):
-        return self.name
-
 
 class blog(AbstractBaseModel):
     title = models.CharField(max_length=100)

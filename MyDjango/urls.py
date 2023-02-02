@@ -16,18 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 # media add
+
 from django.conf import settings
 from django.conf.urls.static import static
-# from django.conf.urls import include
-from core import views
+from django.conf.urls import include
+# from core.views import my_index,contact
+# from baseuser.urls import ulpatterns as baseuser_urls
+from shop.views import shop
+# from baseuser.urls import ulpatterns as baseuser_urls
+from core.urls import urlpatterns as core_urls
+from shop.urls import urlpatterns as shop_urls
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('core/', include('core.urls')),
-    path('', views.index, name='index'),
-    path('contact/', views.contact, name = 'contact'),
-    path('', views.blog, name = 'blog'),
+    path('', include('core.urls')),
+    path('', include('shop.urls')),
     
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT )
 

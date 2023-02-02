@@ -1,5 +1,5 @@
   {% extends 'base.html' %}
-  {% load static custom_tags %}
+  {% load static %}
 
 
 
@@ -7,17 +7,7 @@
     
   <!-- Navbar End -->
     <!-- Featured Start -->
-    {% get_advertisement_all as my_advertisement  %}
-    {% for i in  my_advertisement %}
-    <div class="card" style="margin-left: 1380px !important; margin-top: 5px;background-color: rgb(255, 255, 255);">
-        <img src="{{ i.image }}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{ i.title }}</h5>
-          <p class="card-text">{{ i.description }}</p>
-     </div>
-      </div>
-      {% endfor %}
-      
+  
 
 
     <div class="container-fluid pt-5">
