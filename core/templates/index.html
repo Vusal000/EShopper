@@ -171,12 +171,17 @@
                     <h2 class="section-title px-5 mb-3"><span class="bg-secondary px-2">Stay Updated</span></h2>
                     <p>Amet lorem at rebum amet dolores. Elitr lorem dolor sed amet diam labore at justo ipsum eirmod duo labore labore.</p>
                 </div>
-                <form action="">
+                <form method="post">
+                        {% csrf_token %}
+                        {{ subscribe_form.non_field_errors }}
+                        {% for field in subscribe_form %}
+                        {{ field }}
+                        {{ field.errors }}
+                        {% endfor %}
                     <div class="input-group">
-                        <input type="text" class="form-control border-white p-4" placeholder="Email Goes Here">
                         <div class="input-group-append">
                             <button class="btn btn-primary px-4">Subscribe</button>
-                        </div>
+                        </div> 
                     </div>
                 </form>
             </div>

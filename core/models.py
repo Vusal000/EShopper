@@ -48,16 +48,15 @@ class settings(AbstractBaseModel):
 
 
 class subscribe(AbstractBaseModel):
-    name = models.CharField(max_length= 20)
     email = models.EmailField(max_length=100)
 
 
-    # class Meta:
-    #     verbose_name_plural = "Subscribers"
-    #     verbose_name = "Subscriber"
+    class Meta:
+        verbose_name_plural = "Subscribers"
+        verbose_name = "Subscriber"
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return self.email
 
 class homepage(AbstractBaseModel):
     title1 = models.CharField(max_length=100)
