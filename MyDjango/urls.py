@@ -23,7 +23,7 @@ from django.conf.urls import include
 # from core.views import my_index,contact
 # from baseuser.urls import ulpatterns as baseuser_urls
 from shop.views import shop
-# from baseuser.urls import urlpatterns as baseuser_urls
+from baseuser.urls import urlpatterns as baseuser_urls
 from core.urls import urlpatterns as core_urls
 from shop.urls import urlpatterns as shop_urls
 
@@ -32,7 +32,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('', include('shop.urls')),
-    # path('baseuser/', include(baseuser_urls)),
+    path('baseuser/', include(baseuser_urls)),
+      path('', include('social_django.urls', namespace='social')),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT )
 

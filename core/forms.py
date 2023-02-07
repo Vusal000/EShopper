@@ -28,11 +28,11 @@ class SubscriberForm(forms.ModelForm):
 class ContactForm(forms.ModelForm):
     class Meta:
         model = contact
-        fields = '__all__'
-        widgets ={
+        fields = [ "name",  "text", "email"]
+
+        widgets = {
             'email': forms.EmailInput(attrs={'class': 'form-control',"placeholder":"Your Email" }),
             'name': forms.TextInput(attrs={'class': 'form-control',"placeholder":"Your Name" }),
-            'subject': forms.TextInput(attrs={'class': 'form-control',"placeholder":" Subject" }),
             'text': forms.TextInput(attrs={'class': 'form-control', "rows":"6" ,"placeholder":"Message" }),
     }   
 

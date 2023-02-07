@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'core',
     'baseuser',
     'shop',
+    'social_django',
     
 ]
 
@@ -142,5 +143,27 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '782238044444-32q1qrbmsnhc83v74de63ovmea8f7orq.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1608748472908882'
+SOCIAL_AUTH_FACEBOOK_SECRET = '6cf0c39d02a247b679e62e4b40d3757f'
+
+LOGIN_URL = '/auth/login/google-oauth2/'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 

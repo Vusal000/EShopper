@@ -17,11 +17,11 @@ class contact(AbstractBaseModel):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     text = models.TextField()
-    is_check = models.BooleanField(default=False)
-    class Meta:
-        verbose_name_plural = "Contacs"
-        verbose_name = "Contact"
+    # is_check = models.BooleanField(default=False)
 
+    class Meta:
+        verbose_name_plural = "Contact"
+        verbose_name = "Contact"
 
     def __str__(self):
         return self.name

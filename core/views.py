@@ -1,19 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import   settings, homepage, blog, advertisement
 from core.forms import ContactForm, SubscriberForm
+from django.http import HttpRequest, HttpResponse
+
 # Create your views here.
 
 
-def contact_form(request):
-    contact_model = ContactForm()
+def contact_form(request: HttpRequest) -> HttpResponse:
+    form = ContactForm()
     if request.method == 'POST':
-        contact_model = ContactForm(request.POST)
-        if contact_model.is_valid():
-            contact_model.save()
-            contact_model = ContactForm()
+        form = ContactForm(request.POST)
+        print("test")
+        if form.is_valid():
+            form.save()
+            form = ContactForm()
             
     context = {
-        'contact_model': contact_model
+        'form': form
     }
 
     return render(request , 'contact.html', context)
@@ -42,3 +45,5 @@ def home(request):
         'subscribe_form' : subscribe_form,
     }
     return render(request , 'index.html', context)
+
+

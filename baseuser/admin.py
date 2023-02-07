@@ -4,8 +4,6 @@ from .models import MyUser
 
 @admin.register(MyUser)
 class MyUserAdmin(admin.ModelAdmin):
-    # list_display = ('username', 'email', 'bio','image')
-    # list_display_links = ('username', 'email')
+    list_display = ('username', 'email', 'bio')
     search_fields = ('username', 'email')
     last_filter = ('username', 'email')
-    list_per_page = 25 
