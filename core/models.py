@@ -31,11 +31,17 @@ class contact(AbstractBaseModel):
         super(contact, self).save(*args,**kwargs)
 
 
-class settings(AbstractBaseModel):
+class Settings(AbstractBaseModel):
     logo = models.ImageField(upload_to='media/logo')
     location = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     phone_number = models.CharField(max_length=100)
+    facebook = models.CharField(max_length=100)
+    twitter = models.CharField(max_length=100)
+    linkedln = models.CharField(max_length=100)
+    instagram = models.CharField(max_length=100)
+    youtube = models.CharField(max_length=100)
+    
 
     class Meta:
         verbose_name_plural = "Settings"
@@ -110,3 +116,18 @@ class advertisement(AbstractBaseModel):
 
 
 
+class News(AbstractBaseModel):
+    title = models.CharField(max_length=100)
+    description = models.TextField(max_length=200)
+    image = models.ImageField(upload_to='media/homepage1')
+    slug = models.SlugField(max_length=100,editable=False)
+
+
+    class Meta:
+        verbose_name_plural = "News"
+        verbose_name = "News"
+
+    def __str__(self): 
+        return self.title
+
+    

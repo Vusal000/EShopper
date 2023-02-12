@@ -20,28 +20,30 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import include
-# from core.views import my_index,contact
-# from baseuser.urls import ulpatterns as baseuser_urls
-from shop.views import shop
 from baseuser.urls import urlpatterns as baseuser_urls
 from core.urls import urlpatterns as core_urls
 from shop.urls import urlpatterns as shop_urls
+from django.utils.translation import gettext_lazy as _
+from django.conf.urls.i18n import i18n_patterns
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('core.urls')),
-    path('', include('shop.urls')),
-    path('baseuser/', include(baseuser_urls)),
-      path('', include('social_django.urls', namespace='social')),
+    path('rosetta/', include('rosetta.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),
+    path('', include('social_django.urls', namespace='social')),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT )
 
+# translation
+urlpatterns += i18n_patterns(
+    
+    path('', include(core_urls)),
+    path('', include(shop_urls)),
+    path('baseuser/', include(baseuser_urls)),
+)
 
-
-
-
-
+ 
 
 
 

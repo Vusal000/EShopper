@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import   settings, homepage, blog, advertisement
+
+from .models import News
+from .models import    homepage, blog
 from core.forms import ContactForm, SubscriberForm
 from django.http import HttpRequest, HttpResponse
 
@@ -27,8 +29,7 @@ def contact_form(request: HttpRequest) -> HttpResponse:
 
 def home(request):
     my_homepage = homepage.objects.first()
-    my_settings = settings.objects.first()
-    my_advertisement =advertisement.objects.all()    
+    # setting = settings.objects.all()
     my_blog = blog.objects.all()
 
     subscribe_form = SubscriberForm()
@@ -38,12 +39,20 @@ def home(request):
             subscribe_form.save()
             subscribe_form = SubscriberForm()
     context = {
-        'settings': my_settings,
-        'advertisement': my_advertisement,
+        # 'settings': setting,
         'blog': my_blog,
         'homepage': my_homepage,
         'subscribe_form' : subscribe_form,
     }
     return render(request , 'index.html', context)
 
+
+
+
+def news(request):
+    news = News.objects.all()
+    context = {
+        'news':news,
+    }
+    return render(request , 'news.html', context)
 

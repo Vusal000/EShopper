@@ -25,14 +25,18 @@ class category(AbstractBaseModel):
 
 
 class Products(AbstractBaseModel):
-    title1 = models.CharField(max_length=100)
-    description2 = models.TextField(max_length=200)
-    image1 = models.ImageField(upload_to='media/homepage1')
+    title = models.CharField(max_length=100)
+    description = models.TextField(max_length=200)
+    image = models.ImageField(upload_to='media/homepage1')
+    price = models.FloatField(max_length=100)
+    
+
 
     class Meta:
         verbose_name_plural = "Products"
         verbose_name = "Products"
 
     def __str__(self): 
-        return self.title1
-    
+        return self.title
+
+
