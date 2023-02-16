@@ -4,7 +4,8 @@ from shop import views
 
 
 urlpatterns =[
-    path('shop', views.shop, name='shop'),
+    path('shops', views.shops, name='shops'),
+    path("shops/<int:id>", views.shop),
     
 ]
 

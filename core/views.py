@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from .models import News
-from .models import    homepage, blog
+from .models import homepage, blog
 from core.forms import ContactForm, SubscriberForm
 from django.http import HttpRequest, HttpResponse
 
@@ -25,7 +25,7 @@ def contact_form(request: HttpRequest) -> HttpResponse:
 
 # def my_index(request):
 #     return render(request, 'index.html')
-
+  
 
 def home(request):
     my_homepage = homepage.objects.first()
