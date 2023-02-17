@@ -3,6 +3,21 @@ from .models import  Products,category
 # Create your views here.
 
 
+
+def shop(request, id):
+    products = Products.objects.get(id=id)
+
+    context = {
+        'products': products
+    }
+
+    return render(request, "detail.html", context)
+
+
+
+
+
+
 def shops(request):
     products = Products.objects.all()
     my_category = category.objects.all()
@@ -15,14 +30,6 @@ def shops(request):
 
 
 
-def shop(request, id):
-    products = Products.objects.get(id=id)
-
-    context = {
-        'products': products
-    }
-
-    return render(request, "detail.html", context)
 
 
 

@@ -4,7 +4,7 @@ from rest_framework import status
 
 from shop.models import Products
 from core.models import News
-from shop.api.serializer import GETNewsSerializer, POSTProductsSerializer,  ProductsSerializer
+from shop.api.serializer import GETNewsSerializer, POSTProductsSerializer,  ProductsSerializer, SubscribeSerializer
 
 
 class ProductAPIView(APIView):
@@ -68,4 +68,13 @@ class NewsAPIView(APIView):
             return Response({'error': 'id is invalid'}, status=status.HTTP_400_BAD_REQUEST)
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class SubscribeAPIViev(APIView):
+
+    def post(self, request, *args, **kwargs):
+        serializer = SubscribeSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.errors, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST) 
 

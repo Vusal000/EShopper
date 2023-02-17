@@ -54,7 +54,7 @@ class Settings(AbstractBaseModel):
 
 
 class subscribe(AbstractBaseModel):
-    email = models.EmailField(max_length=100)
+    email = models.EmailField(max_length=100,unique=True,db_index=True)
 
 
     class Meta:

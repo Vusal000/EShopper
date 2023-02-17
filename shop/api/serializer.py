@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from shop.models import  category,Products
 
-from core.models import  News
+from core.models import  News, subscribe
 
 
 class ProductsSerializer(serializers.ModelSerializer):
@@ -41,4 +41,60 @@ class GETNewsSerializer(serializers.ModelSerializer):
         )
  
 
- 
+class SubscribeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = subscribe
+        fields = (
+            'email',
+        )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
