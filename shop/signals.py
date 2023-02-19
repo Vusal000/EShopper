@@ -5,4 +5,4 @@ from shop.models import Products
 @receiver(pre_save, sender=Products)
 def product_pre_save(sender, instance, **kwargs):
     print('pre_save signals')
-    
+     

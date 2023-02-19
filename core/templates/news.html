@@ -11,10 +11,19 @@
                  <img src="{{ i.image.url }}" class="card-img-top">
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">{{ i.title }}</h5>
+                    <h5 class="card-title"><a href="news/{{i.id}}">{{ i.title }}</a></h5>
                     <p class="card-text">{{ i.description }}</p>
                 </div>
             {% endfor %}
 
 
 {% endblock %}
+
+
+
+
+
+
+
+
+

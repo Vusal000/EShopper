@@ -4,6 +4,7 @@ from core import views
 urlpatterns =[
     path('', views.home, name='home'),
     path('contact/', views.contact_form, name='contact'),
-    path('news/', views.news, name='news'),
+    # path('news/', views.news, name='news'),
+    # path("news/<int:id>", views.new, name='new'),
 ]
 

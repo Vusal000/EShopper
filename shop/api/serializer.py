@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from shop.models import  category,Products
-
-from core.models import  News, subscribe
+from blog.models import News
+from core.models import  subscribe
 
 
 class ProductsSerializer(serializers.ModelSerializer):

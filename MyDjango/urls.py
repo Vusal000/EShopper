@@ -23,6 +23,7 @@ from django.conf.urls import include
 from baseuser.urls import urlpatterns as baseuser_urls
 from core.urls import urlpatterns as core_urls
 from shop.urls import urlpatterns as shop_urls
+from blog.urls import urlpatterns as blog_urls
 from shop.api.urls import urlpatterns as shop_api_urls
 from django.utils.translation import gettext_lazy as _
 from django.conf.urls.i18n import i18n_patterns
@@ -42,6 +43,7 @@ urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
     path('', include(core_urls)),
     path('', include(shop_urls)),
+    path('', include(blog_urls)),
     path('baseuser/', include(baseuser_urls)),
 )
 

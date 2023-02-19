@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'core',
     'baseuser',
     'shop',
+    'blog',
     'social_django',
     'rosetta',
     'modeltranslation',

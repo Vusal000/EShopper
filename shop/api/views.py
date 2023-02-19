@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 
 from shop.models import Products
-from core.models import News
+from blog.models import News
 from shop.api.serializer import GETNewsSerializer, POSTProductsSerializer,  ProductsSerializer, SubscribeSerializer
 
 

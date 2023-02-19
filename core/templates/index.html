@@ -176,21 +176,46 @@
 
 
     <!-- Products Start -->
-    <div class="container-fluid pt-5">
+    {% comment %}
+    {% for product in products %}
+    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+        <div class="card product-item border-0 mb-4">
+            <div
+                class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                <img class="img-fluid w-100" src="{{ product.image.url }}" alt="">
+            </div>
+            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                <h6 class="text-truncate mb-3"><a href="shops/{{product.id}}">{{ product.title }}</a></h6>
+                <div class="d-flex justify-content-center">
+                    <h6>{{ product.price }}</h6>
+                    <h6 class="text-muted ml-2"><del>{{ product.price }}</del></h6>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between bg-light border">
+                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
+                    Detail</a>
+                <a href="" class="btn btn-sm text-dark p-0"><i
+                        class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endcomment %}
+    <div class="container-fluid pt-5" style="margin-left: 130px;">
         <div class="text-center mb-4">
             <h2 class="section-title px-5"><span class="px-2">Trandy Products</span></h2>
         </div>
         <div class="row px-xl-5 pb-3">
-            
+            {% for product in products %}
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="card product-item border-0 mb-4">
                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                        <img class="img-fluid w-100" src="" alt="">
+                        <img class="img-fluid w-100" src="{{ product.image.url }}" alt="">
                     </div>
                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                        <h6 class="text-truncate mb-3">stylish coat</h6>
+                        <h6 class="text-truncate mb-3"><a href="shops/{{product.id}}">{{ product.title }}</a></h6>
                         <div class="d-flex justify-content-center">
-                            <h6>123</h6><h6 class="text-muted ml-2"><del>123 </del></h6>
+                            <h6>{{ product.price }}</h6><h6 class="text-muted ml-2"><del>123 </del></h6>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
@@ -199,7 +224,7 @@
                     </div>
                 </div>
             </div>
-            
+            {% endfor %}
         </div>
     </div>
     <!-- Products End -->
@@ -210,9 +235,24 @@
         <div class="row justify-content-md-center py-5 px-xl-5">
             <div class="col-md-6 col-12 py-5">
                 <div class="text-center mb-2 pb-2">
-                    <h2 class="section-title px-5 mb-3"><span class="bg-secondary px-2">Stay Updated</span></h2>
-                    <p>Amet lorem at rebum amet dolores. Elitr lorem dolor sed amet diam labore at justo ipsum eirmod duo labore labore.</p>
+                    <h2 class="section-title px-5 mb-3"><span class="bg-secondary px-2">Abune olda ala!</span></h2>
+                    <p>Email hesablarina ehtiyacimiz  var gor neynirsen:).</p>
                 </div>
+                <form action="" class="custom-form subscribe-form mc-4 role" role="form" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-7" >
+                            <input type="email" name="subscribe-email" id="emailinput" class = 'form-control' placeholder="Your Email Adress">
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-5" >
+                            <button type="submit" class="form-control" id ='emailbutton'>Submit</button>
+                        </div>
+
+                    </div>
+                </form>
+
+
+                {% comment %}
                 <form method="post">
                         {% csrf_token %}
                         {{ subscribe_form.non_field_errors }}
@@ -226,6 +266,7 @@
                         </div> 
                     </div>
                 </form>
+                {% endcomment %}
             </div>
         </div>
     </div>
@@ -413,5 +454,44 @@
         </div>
     </div>
     <!-- Vendor End -->
+<script>
+    SubscriberLogic = {
+        emailManager(email){
+            fetch('/shop/api/subscribe', {
+                method: 'POST',
+                credential: 'include',
+                headers: {
+                    'Content-type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+                body: JSON.stringify({
+                    'email': email,
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    subscribeModalLongTitle = document.getElementById('subscribeModalLongTitle')
+                    if(data['success'] = true) {
+                        emailinput.value = '';
+                        alert('you have succesfully subscribed!')
+                    }else {
+                        emailinput.value = '';
+                        alert('Save to DB.');
+                    }
+
+                });
+        }  
+
+    }
+
+    emailbutton = document.getElementById('emailbutton')
+    emailinput = document.getElementById('emailinput')
+
+    emailbutton.onclick = function (e) {
+        e.preventDefault();
+        email = emailinput.value;
+        SubscriberLogic.emailManager(email);
+    }
+</script>
 
 {% endblock %}
