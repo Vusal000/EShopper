@@ -1,5 +1,7 @@
 from django.db import models
-from baseuser.forms import User
+# from baseuser.forms import User
+# from django.contrib.auth import get_user_model
+# User = get_user_model()
 
 from core.models import AbstractBaseModel
 
@@ -8,7 +10,8 @@ class News(AbstractBaseModel):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=200)
     image = models.ImageField(upload_to='media/homepage1')
-    author = models.ForeignKey(User, on_delete=models.CASCADE)    # slug = models.SlugField(max_length=100,editable=False)
+    author = models.CharField(max_length=100)
+       # slug = models.SlugField(max_length=100,editable=False)
 
 
     class Meta:

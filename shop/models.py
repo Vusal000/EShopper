@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 
 
@@ -12,7 +13,7 @@ class AbstractBaseModel(models.Model):
         abstract = True
 
 
-class category(AbstractBaseModel):
+class Category(AbstractBaseModel):
     title = models.CharField(max_length=100)
 
     class Meta:
@@ -29,14 +30,22 @@ class Products(AbstractBaseModel):
     description = models.TextField(max_length=200)
     image = models.ImageField(upload_to='media/homepage1')
     price = models.FloatField(max_length=100)
+    slug = models.SlugField( null=False, blank=True, unique=True, db_index=True ,  editable=False)
+
+    def __str__(self):
+       return self.title
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
     
 
 
-    class Meta:
-        verbose_name_plural = "Products"
-        verbose_name = "Products"
+    # class Meta:
+    #     verbose_name_plural = "Products"
+    #     verbose_name = "Products"
 
-    def __str__(self): 
-        return self.title
+    # def __str__(self): 
+    #     return self.title
 
 

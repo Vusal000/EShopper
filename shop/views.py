@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from .models import  Products,category
+from .models import  Category, Products
 # Create your views here.
 
 
 
-def shop(request, id):
-    products = Products.objects.get(id=id)
+def shop(request, slug):
+    products = Products.objects.get(slug=slug)
 
     context = {
         'products': products
@@ -20,11 +20,11 @@ def shop(request, id):
 
 def shops(request):
     products = Products.objects.all()
-    my_category = category.objects.all()
+    category = Category.objects.all()
 
     context = {
         'products':products,
-        'category': my_category
+        'category': category
     }
     return render(request , 'shop.html', context)
 
