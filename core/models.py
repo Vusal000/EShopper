@@ -33,7 +33,15 @@ class contact(AbstractBaseModel):
 
 class Settings(AbstractBaseModel):
     logo = models.ImageField(upload_to='media/logo')
+    image1 = models.ImageField(upload_to='media/image1')
+    information1 = models.TextField()
+    description1 = models.TextField()
+    image2 = models.ImageField(upload_to='media/image2')
+    description2 = models.TextField()
+    information2 = models.TextField()
     location = models.CharField(max_length=100)
+    about_us = models.TextField()
+    button = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     phone_number = models.CharField(max_length=100)
     facebook = models.CharField(max_length=100)
