@@ -1,3 +1,4 @@
+from baseuser.models import MyUser
 from rest_framework import serializers
 from shop.models import  Category,Products
 from blog.models import News
@@ -28,8 +29,32 @@ class POSTProductsSerializer(serializers.ModelSerializer):
             'price',
         )
 
- 
+class  AuthorSerializer():
+    class Meta:
+        model = MyUser
+        fields = (
+            'id',
+            'username',
+            'bio',
+        )
+
+
+
+
 class GETNewsSerializer(serializers.ModelSerializer):
+    author = AuthorSerializer()
+    class Meta:
+        model = News
+        fields = (
+            'id',
+            'title',
+            'description',
+            'image',
+            'author',
+        )
+
+
+class POSTNewsSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = News
@@ -39,7 +64,6 @@ class GETNewsSerializer(serializers.ModelSerializer):
             'description',
             'image',
         )
- 
 
 class SubscribeSerializer(serializers.ModelSerializer):
 

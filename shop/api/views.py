@@ -4,7 +4,7 @@ from rest_framework import status
 
 from shop.models import Products,Category
 from blog.models import News
-from shop.api.serializer import GETNewsSerializer, POSTProductsSerializer,  ProductsSerializer, SubscribeSerializer
+from shop.api.serializer import GETNewsSerializer, POSTNewsSerializer, POSTProductsSerializer,  ProductsSerializer, SubscribeSerializer
 
 
 class ProductAPIView(APIView):
@@ -55,8 +55,7 @@ class NewsAPIView(APIView):
         return Response(data=serializer.data)
 
     def post(self, request, *args, **kwargs):
-        serializer = GETNewsSerializer(data=request.data)
-        # if serializer.is_valid(raise_exception=True):
+        serializer = POSTNewsSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -68,6 +67,34 @@ class NewsAPIView(APIView):
             return Response({'error': 'id is invalid'}, status=status.HTTP_400_BAD_REQUEST)
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class NewsDetailAPIView(APIView):
+    
+    def get(self, request, id, *args, **kwargs):
+        try:
+            post = News.objects.get(id=id)
+            serializer = GETNewsSerializer(post)
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+        except News.DoesNotExist:
+            return Response({'error': 'id is invalid'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    def put(self, request, *args, **kwargs):
+        try:
+            blog = News.objects.get(id=kwargs['id'])
+            serializer = POSTNewsSerializer(data=request.data, instance=blog, partial=True)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except News.DoesNotExist:
+            return Response({'error': 'id is invalid'}, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, id, *args, **kwargs):
+        try:
+            blog = News.objects.get(id=id)
+            blog.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except News.DoesNotExist:
+                return Response({'error': 'id is invalid'}, status=status.HTTP_400_BAD_REQUEST)
 
 class SubscribeAPIViev(APIView):
 

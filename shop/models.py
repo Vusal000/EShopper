@@ -30,6 +30,8 @@ class Products(AbstractBaseModel):
     description = models.TextField(max_length=200)
     image = models.ImageField(upload_to='media/homepage1')
     price = models.FloatField(max_length=100)
+    compared_price = models.FloatField(max_length=10,null=True,blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     slug = models.SlugField( null=False, blank=True, unique=True, db_index=True ,  editable=False)
 
     def __str__(self):

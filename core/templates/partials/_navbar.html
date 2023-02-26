@@ -54,16 +54,6 @@
                     </div>
                 </form>
             </div>
-            <div class="col-lg-3 col-6 text-right">
-                <a href="" class="btn border">
-                    <i class="fas fa-heart text-primary"></i>
-                    <span class="badge">0</span>
-                </a>
-                <a href="" class="btn border">
-                    <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
-                </a>
-            </div>
         </div>
     </div>
     <!-- Topbar End -->
@@ -79,15 +69,9 @@
                 </a>
                 <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                        <a href="" class="nav-item nav-link">Shirts</a>
-                        <!-- <a href="" class="nav-item nav-link">Jeans</a>
-                        <a href="" class="nav-item nav-link">Swimwear</a>
-                        <a href="" class="nav-item nav-link">Sleepwear</a>
-                        <a href="" class="nav-item nav-link">Sportswear</a>
-                        <a href="" class="nav-item nav-link">Jumpsuits</a>
-                        <a href="" class="nav-item nav-link">Blazers</a>
-                        <a href="" class="nav-item nav-link">Jackets</a>
-                        <a href="" class="nav-item nav-link">Shoes</a> -->
+                        {% for i in category %}
+                        <a href="" class="nav-item nav-link">{{ i.title }}</a>
+                        {% endfor %}
                     </div>
                 </nav>
             </div>
@@ -104,7 +88,6 @@
                             <a href="{%  url 'home' %}" class="nav-item nav-link active">{% trans 'Home' %}</a>
                             <a href="{%  url 'shops' %}" class="nav-item nav-link">{% trans 'Shop' %}</a>
                             <a href="{%  url 'news' %}" class="nav-item nav-link">{% trans 'News' %}</a>
-                            <a href="detail.html" class="nav-item nav-link">{% trans 'Shop detail' %}</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{% trans 'Pages' %}</a>
                                 <div class="dropdown-menu rounded-0 m-0">
@@ -128,7 +111,7 @@
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" style="height: 410px;">
-                            <img class="img-fluid" src="{{ settings.image1 }}" alt="Image">
+                            <img class="img-fluid" src="{{ settings.image1.url }}" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">{{ settings.description1 }}</h4>
@@ -138,7 +121,7 @@
                             </div>
                         </div>
                         <div class="carousel-item" style="height: 410px;">
-                            <img class="img-fluid" src="{{ settings.image2 }}" alt="Image">
+                            <img class="img-fluid" src="{{ settings.image2.url }}" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">{{ settings.information2 }}</h4>
@@ -148,7 +131,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                    <a class="carousel-control-prev" href="{%  url 'shops' %}" data-slide="prev">
                         <div class="btn btn-dark" style="width: 45px; height: 45px;">
                             <span class="carousel-control-prev-icon mb-n2"></span>
                         </div>

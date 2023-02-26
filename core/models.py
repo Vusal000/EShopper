@@ -62,8 +62,7 @@ class Settings(AbstractBaseModel):
 
 
 class subscribe(AbstractBaseModel):
-    email = models.EmailField(max_length=100,unique=True,db_index=True)
-
+    email = models.EmailField(max_length=100, unique=True, db_index=True)
 
     class Meta:
         verbose_name_plural = "Subscribers"
@@ -97,18 +96,6 @@ class category(AbstractBaseModel):
     def __str__(self): 
         return self.title
 
-class blog(AbstractBaseModel):
-    title = models.CharField(max_length=100)
-    description = models.TextField(max_length=200)
-    image = models.ImageField(upload_to='media/product')
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name_plural = "Blog"
-        verbose_name = "Blog"
-
-    def __str__(self):
-        return self.title
 
 class advertisement(AbstractBaseModel):
     title = models.CharField(max_length=100)
