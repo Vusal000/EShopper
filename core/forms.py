@@ -7,7 +7,9 @@ class SubscriberForm(forms.ModelForm):
         model = subscribe
         fields = ('email',)
         widgets ={
-            'email': forms.EmailInput(attrs={'class':' form-control ', 'placeholder': 'Enter Your Email '})
+            'email': forms.EmailInput(attrs={
+            'class':' form-control ', 
+            'placeholder': 'Enter Your Email '})
         }
     
     def clean_email(self):

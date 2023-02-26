@@ -23,7 +23,11 @@ class Category(AbstractBaseModel):
     def __str__(self): 
         return self.title
 
+class Color(AbstractBaseModel):
+    title = models.CharField(max_length=100)
 
+class Size(AbstractBaseModel):
+    title = models.CharField(max_length=10)
 
 class Products(AbstractBaseModel):
     title = models.CharField(max_length=100)
@@ -32,6 +36,8 @@ class Products(AbstractBaseModel):
     price = models.FloatField(max_length=100)
     compared_price = models.FloatField(max_length=10,null=True,blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    color = models.ForeignKey(Color,on_delete=models.CASCADE)
+    size = models.ForeignKey(Size,on_delete=models.CASCADE)
     slug = models.SlugField( null=False, blank=True, unique=True, db_index=True ,  editable=False)
 
     def __str__(self):

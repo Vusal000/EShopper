@@ -165,7 +165,7 @@
                 </form>
                 {% endcomment %}
 
-                <form  class="custom-form subscribe-form mc-4 role" role="form" method="post">
+                <form  class="custom-form subscribe-form mc-4 role" role="form" method="post" style="width: 380px; display: inline;">
                         {% csrf_token %}
                         {{ subscribe_form.non_field_errors }}
                         {% for field in subscribe_form %}
