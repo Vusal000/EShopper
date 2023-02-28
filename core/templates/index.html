@@ -118,6 +118,7 @@
         <div class="text-center mb-4">
             <h2 class="section-title px-5"><span class="px-2">Trandy Products</span></h2>
         </div>
+        
         <div class="row px-xl-5 pb-3">
             {% for product in products %}
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
@@ -165,16 +166,16 @@
                 </form>
                 {% endcomment %}
 
-                <form  class="custom-form subscribe-form mc-4 role" role="form" method="post" style="width: 380px; display: inline;">
+                <form  class="custom-form subscribe-form mc-4role" role="form" method="post" style="width: 380px; display: inline;">
                         {% csrf_token %}
                         {{ subscribe_form.non_field_errors }}
                         {% for field in subscribe_form %}
                         {{ field }}
                         {{ field.errors }}
                         {% endfor %}
-                    <div class="row">
+                    <div class="row" style="display:block; margin-top: -37px; margin-left: 750px;">
                         <div class="col-lg-4 col-md-4 col-5" >
-                            <button type="submit" class="form-control" id ='emailbutton'>Submit</button>
+                            <button type="submit" class="form-control" id ='emailbutton' style="display: inline-block; width: 80px;">Submit</button>
                         </div> 
                     </div>
                 </form>

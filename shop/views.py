@@ -13,6 +13,11 @@ def shop(request, slug):
 
     return render(request, "detail.html", context)
 
+# class ProductListView(ListView):
+#     model = Products
+#     paginate_by = 1
+    
+
 
 def shops(request):
     products = Products.objects.all()

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from django.views.generic.list import ListView
 from .models import Settings, homepage
 from core.forms import ContactForm, SubscriberForm
 from shop.models import Category, Products
@@ -9,9 +9,6 @@ from django.http import HttpRequest, HttpResponse
 # Create your views here.
 from django.db.models.query_utils import Q
 from django.db.models import QuerySet, Avg, Q, Count
-
-
-
 
 
 def contact_form(request: HttpRequest) -> HttpResponse:
@@ -52,6 +49,14 @@ def home(request):
     }
     return render(request , 'index.html', context)
 
+
+
+# def products(request): 
+#     products = Products.objects.all()
+#     context = {
+#         'products':products[0:3],
+#     }
+#     return render(request , 'index.html', context)
 
 
 

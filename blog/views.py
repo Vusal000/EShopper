@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 from blog.models import News
 
 # Create your views here.
@@ -14,9 +13,6 @@ def new(request, pk):
 
 
 
-
-
-
 def news(request):
     news = News.objects.all()
 
@@ -25,6 +21,7 @@ def news(request):
     }
 
     return render(request, "news.html", context)
+
 
 
 

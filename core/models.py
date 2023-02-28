@@ -86,15 +86,7 @@ class homepage(AbstractBaseModel):
     def __str__(self): 
         return self.title1
     
-class category(AbstractBaseModel):
-    title = models.CharField(max_length=100)
 
-    class Meta:
-        verbose_name_plural = "Category"
-        verbose_name = "Category"
-
-    def __str__(self): 
-        return self.title
 
 
 class advertisement(AbstractBaseModel):

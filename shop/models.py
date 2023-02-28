@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.text import slugify
 
 
@@ -26,8 +27,14 @@ class Category(AbstractBaseModel):
 class Color(AbstractBaseModel):
     title = models.CharField(max_length=100)
 
+    def __str__(self):
+       return self.title
+
 class Size(AbstractBaseModel):
     title = models.CharField(max_length=10)
+
+    def __str__(self):
+       return self.title
 
 class Products(AbstractBaseModel):
     title = models.CharField(max_length=100)
@@ -47,13 +54,5 @@ class Products(AbstractBaseModel):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
     
-
-
-    # class Meta:
-    #     verbose_name_plural = "Products"
-    #     verbose_name = "Products"
-
-    # def __str__(self): 
-    #     return self.title
-
-
+    def get_absolute_url(self):
+        return reverse('shopdetails', kwargs={'slug': self.slug})
